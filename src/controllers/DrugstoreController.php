@@ -32,7 +32,7 @@ class DrugstoreController extends Controller {
 		$this->termRepository = $termRepository;
 		$this->postRepository = $postRepository;
 		$this->unitService = $unitService;
-		$this->taxonomy = config('option.taxonomy.region');
+		$this->taxonomy = config('term.taxonomy.region');
 		$this->type = config('option.post_type.drugstore');
 	}
 	/**
