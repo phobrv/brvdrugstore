@@ -1,4 +1,4 @@
-@extends('phobrv::layout.app')
+@extends('phobrv::adminlte3.layout')
 
 @section('header')
 <ul>
@@ -32,11 +32,11 @@
 <div class="row">
 
 	<div class="col-md-5">
-		<div class="box box-primary">
+		<div class="card">
 			<div class="box-header font16">
 				List Drugstore
 			</div>
-			<div class="box-body">
+			<div class="card-body">
 
 				<table id="table-no-order" class="table table-bordered table-striped">
 					<thead>
@@ -89,14 +89,14 @@
 		</div>
 	</div>
 	<div class="col-md-7">
-		<div class="box box-primary">
+		<div class="card">
 			<div class="box-header font16">
 				Create/Edit Drugstore
 				<a href="#" onclick="save()"  class="pull-right btn btn-primary float-left">
 					<i class="fa fa-edit"></i> Save
 				</a>
 			</div>
-			<div class="box-body">
+			<div class="card-body">
 				<form method="post" action="{{isset($data['post']) ? route('drugstore.update',array('drugstore'=>$data['post']->id)) : route('drugstore.store')}}"  enctype="multipart/form-data" id="formSubmit"  class="form-horizontal" >
 					@csrf
 					@isset($data['post']) @method('put') @endisset
