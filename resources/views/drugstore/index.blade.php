@@ -33,7 +33,7 @@
 
 	<div class="col-md-5">
 		<div class="card">
-			<div class="box-header font16">
+			<div class="card-header font16">
 				List Drugstore
 			</div>
 			<div class="card-body">
@@ -51,7 +51,7 @@
 						<tr>
 							<td>{{$r->title}}</td>
 							<td align="center">
-								<a href="{{route('drugstore.edit',array('drugstore'=>$r->id))}}"><i class="fa fa-edit" title="Sửa"></i></a>
+								<a href="{{route('drugstore.edit',array('drugstore'=>$r->id))}}"><i class="far fa-edit" title="Sửa"></i></a>
 								@if(!isset($r->childs) || count($r->childs) == 0)
 								&nbsp;&nbsp;&nbsp;
 								<a style="color: red" href="#" onclick="destroy('destroy{{$r->id}}')"><i class="fa fa-times" title="Sửa"></i></a>
@@ -67,7 +67,7 @@
 						<tr>
 							<td style="padding-left: 30px;">{{$c->title}}</td>
 							<td align="center">
-								<a href="{{route('drugstore.edit',array('drugstore'=>$c->id))}}"><i class="fa fa-edit" title="Sửa"></i></a>
+								<a href="{{route('drugstore.edit',array('drugstore'=>$c->id))}}"><i class="far fa-edit" title="Sửa"></i></a>
 
 								&nbsp;&nbsp;&nbsp;
 								<a style="color: red" href="#" onclick="destroy('destroy{{$c->id}}')"><i class="fa fa-times" title="Sửa"></i></a>
@@ -90,10 +90,10 @@
 	</div>
 	<div class="col-md-7">
 		<div class="card">
-			<div class="box-header font16">
+			<div class="card-header font16">
 				Create/Edit Drugstore
-				<a href="#" onclick="save()"  class="pull-right btn btn-primary float-left">
-					<i class="fa fa-edit"></i> Save
+				<a href="#" onclick="save()"  class="pull-right btn btn-primary mr-auto">
+					<i class="far fa-edit"></i> Save
 				</a>
 			</div>
 			<div class="card-body">
@@ -117,7 +117,7 @@
 					@include('phobrv::input.inputText',['label'=>'Meta Title','key'=>'meta_title','type'=>'meta'])
 					@include('phobrv::input.inputText',['label'=>'Meta Description','key'=>'meta_description','type'=>'meta'])
 					@include('phobrv::input.inputText',['label'=>'Meta Keywords','key'=>'meta_keywords','type'=>'meta'])
-					<button id="btnSubmit" style="display: block" type="submit" >Submit</button>
+					<button id="btnSubmit" style="display: none" type="submit" >Submit</button>
 				</form>
 			</div>
 		</div>
