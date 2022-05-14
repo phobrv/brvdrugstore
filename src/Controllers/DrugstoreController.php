@@ -10,6 +10,7 @@ use Phobrv\BrvCore\Repositories\TermRepository;
 use Phobrv\BrvCore\Repositories\UserRepository;
 use Phobrv\BrvCore\Services\HandleMenuServices;
 use Phobrv\BrvCore\Services\UnitServices;
+use Phobrv\BrvCore\Services\PostServices;
 
 class DrugstoreController extends Controller
 {
@@ -20,11 +21,13 @@ class DrugstoreController extends Controller
     protected $taxonomy;
     protected $type;
     protected $handleMenuService;
+    protected $postService;
 
     public function __construct(
         UserRepository $userRepository,
         TermRepository $termRepository,
         PostRepository $postRepository,
+        PostServices $postService,
         UnitServices $unitService,
         HandleMenuServices $handleMenuService
     ) {
@@ -32,6 +35,7 @@ class DrugstoreController extends Controller
         $this->userRepository = $userRepository;
         $this->termRepository = $termRepository;
         $this->postRepository = $postRepository;
+        $this->postService = $postService;
         $this->unitService = $unitService;
         $this->taxonomy = config('term.taxonomy.region');
         $this->type = config('option.post_type.drugstore');
@@ -70,7 +74,7 @@ class DrugstoreController extends Controller
                 $data['regions'] = $this->termRepository->find($data['select']);
 
                 $data['drugstores'] = $this->handleMenuService->handleMenuItem($data['regions']->posts);
-                $data['arrayRegionParent'] = $this->postRepository->createArrayMenuParent($data['regions']->posts, 0);
+                $data['arrayRegionParent'] = $this->postService->createArrayMenuParent($data['regions']->posts, 0);
             }
 
             return view('phobrv::drugstore.index')->with('data', $data);
@@ -160,7 +164,7 @@ class DrugstoreController extends Controller
             $data['drugstores'] = $this->handleMenuService->handleMenuItem($data['regions']->posts);
             $data['post'] = $this->postRepository->find($id);
             $data['childs'] = $this->postRepository->findByField('parent', $data['post']->id);
-            $data['arrayRegionParent'] = $this->postRepository->createArrayMenuParent($data['regions']->posts, 0);
+            $data['arrayRegionParent'] = $this->postService->createArrayMenuParent($data['regions']->posts, 0);
             return view('phobrv::drugstore.index')->with('data', $data);
 
         } catch (Exception $e) {
